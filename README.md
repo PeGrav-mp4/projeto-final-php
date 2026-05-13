@@ -12,14 +12,14 @@ Projeto de conclusão desenvolvido para a disciplina de Programação Orientada 
 
 Para facilitar a defesa do código, as responsabilidades foram divididas estrategicamente entre os integrantes do grupo:
 
-### 1. Gustavo Henrique Garcia Cavalli (RGM: 43635563)
+### 1. Luana Brotto de Jesus (RGM: 41940270)
 **Foco:** Front-end, UX/UI e Interface (*Desenvolvimento visual e estrutural*)
 - Criação e manutenção do arquivo `style.css`.
 - Implementação de layouts responsivos utilizando `Flexbox` e media queries (`@media max-width`).
 - Desenvolvimento visual das telas de Login, Cadastro e Dashboard.
 - Definição do *Design System* padrão do projeto (cores, fontes, botões, states de hover e reset CSS).
 
-### 2. Luana Brotto de Jesus (RGM: 41940270)
+### 2. Gustavo Henrique Garcia Cavalli (RGM: 43635563)
 **Foco:** Banco de Dados e CRUD Principal (*Núcleo do sistema*)
 - Modelagem do Banco de Dados Relacional (`banco.sql`).
 - Implementação da lógica de conexão ao banco de dados (`conexao.php`).
