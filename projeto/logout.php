@@ -1,8 +1,12 @@
 <?php
-session_start(); #inicia sessao atual
+// =============================================
+// Arquivo: logout.php
+// Função: Encerrar a sessão do usuário e redirecionar para o login
+// =============================================
 
-Session_destroy(); #apaga todos os dados da sessao 
+session_start();      // Inicia a sessão atual para poder destruí-la
+session_destroy();    // Apaga todos os dados da sessão ($_SESSION)
 
-header("Location: login.php"); #redireciona para login
+header("Location: login.php"); // Redireciona para a tela de login
 exit;
 ?>

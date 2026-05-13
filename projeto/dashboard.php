@@ -1,31 +1,91 @@
 <?php
+// =============================================
+// Arquivo: dashboard.php
+// Função: Painel principal do usuário logado
+// Mostra estatísticas e links de navegação
+// =============================================
 
-session_start();
+session_start(); // Inicia a sessão para acessar os dados do usuário logado
+include('../config/conexao.php'); // Importa a conexão com o banco
 
+// Se não estiver logado, redireciona para o login
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: /projeto/login.php"); #garante que apenas usuarios logados possam acessar o dashboard e as tarefas 
-    exit; #(se nao existir usuario logado redirecionar para login)
+    header("Location: login.php");
+    exit;
 }
+
+$usuario_id = $_SESSION['usuario_id']; // ID do usuário logado (salvo na sessão)
+
+// Conta o total de tarefas atribuídas ao usuário logado
+$total_tarefas = mysqli_fetch_assoc(
+    mysqli_query($conexao, "SELECT COUNT(*) as total FROM tarefas WHERE usuario_id = $usuario_id")
+)['total'];
+
+// Conta quantas estão pendentes
+$pendentes = mysqli_fetch_assoc(
+    mysqli_query($conexao, "SELECT COUNT(*) as total FROM tarefas WHERE usuario_id = $usuario_id AND status = 'pendente'")
+)['total'];
+
+// Conta quantas estão concluídas
+$concluidas = mysqli_fetch_assoc(
+    mysqli_query($conexao, "SELECT COUNT(*) as total FROM tarefas WHERE usuario_id = $usuario_id AND status = 'concluida'")
+)['total'];
 ?>
-
-<h2>Bem-vindo, <?php echo $_SESSION['usuario_nome']; ?>!</h2>
-
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <h1>Painel do Sistema</h1>
+    <!-- Cabeçalho com nome do sistema e botão de sair -->
+    <header>
+        <nav>
+            <h2><a href="dashboard.php">Gerenciador de Tarefas</a></h2>
+            <div>
+                <!-- htmlspecialchars() previne ataques XSS ao exibir dados do usuário -->
+                <span>Olá, <strong><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></strong></span>
+                <a href="logout.php" class="btn btn-secondary">Sair</a>
+            </div>
+        </nav>
+    </header>
 
-    <a href="../tarefas/adicionar.php">Adicionar tarefa</a>
-    <a href="../tarefas/listar.php">Ver tarefas</a>
+    <main>
+        <h1>Seu Painel</h1>
+        <p>Gerencie suas atividades e acompanhe seu progresso.</p>
+        <br>
 
-    <p>
-        Usuario logado:
-        <?php echo $_SESSION['usuario_nome']; ?>
-    </p>
+        <!-- Cards de estatísticas usando tags semânticas (section + article) -->
+        <section class="stats">
+            <article class="card text-center">
+                <p>Total de Tarefas</p>
+                <h2><?php echo $total_tarefas; ?></h2>
+            </article>
+            <article class="card text-center" style="border-left: 4px solid #856404;">
+                <p>Pendentes</p>
+                <h2 style="color: #856404;"><?php echo $pendentes; ?></h2>
+            </article>
+            <article class="card text-center" style="border-left: 4px solid #155724;">
+                <p>Concluídas</p>
+                <h2 style="color: #155724;"><?php echo $concluidas; ?></h2>
+            </article>
+        </section>
 
-    <a href="logout.php">Sair</a>
+        <!-- Navegação rápida -->
+        <section class="card">
+            <h3>O que vamos fazer hoje?</h3>
+            <p>Gerencie as tarefas ou veja as alterações no sistema.</p>
+            <br>
+            <a href="historico_geral.php" class="btn btn-secondary">Logs do Sistema</a>
+            <a href="../tarefas/listar.php" class="btn btn-secondary">Ver Todas</a>
+            <a href="../tarefas/adicionar.php" class="btn">Nova Tarefa</a>
+        </section>
+    </main>
+
+    <footer>
+        <small>&copy; <?php echo date('Y'); ?> Gerenciador de Tarefas</small>
+    </footer>
 </body>
 </html>

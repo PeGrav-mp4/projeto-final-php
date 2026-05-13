@@ -1,35 +1,38 @@
 <?php
-session_start();
+// =============================================
+// Arquivo: autenticar.php
+// Função: Recebe email e senha do formulário de login (POST)
+//         e verifica se o usuário existe no banco
+// =============================================
 
-include('../config/conexao.php'); #importar a conexao com o banco
+session_start(); // Inicia a sessão para poder salvar dados do usuário
+include('../config/conexao.php'); // Importa a conexão com o banco
 
+// Recebe os dados enviados via POST pelo formulário de login
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 
+// Busca o usuário pelo e-mail informado
 $sql = "SELECT * FROM usuarios WHERE email = '$email'";
+$resultado = mysqli_query($conexao, $sql);
 
-$resultado = mysqli_query($conexao, $sql); #executar o sql
+// mysqli_num_rows() conta quantos registros foram encontrados
+if (mysqli_num_rows($resultado) > 0) {
+    // mysqli_fetch_assoc() transforma o resultado em um array associativo
+    $usuario = mysqli_fetch_assoc($resultado);
 
-if (mysqli_num_rows($resultado) > 0){
-    $usuario = mysqli_fetch_assoc($resultado); #transforma resultado em array BIBLIOTECA
+    // password_verify() compara a senha digitada com a senha criptografada do banco
+    if (password_verify($senha, $usuario['senha'])) {
+        // Cria as variáveis de sessão para manter o login ativo
+        $_SESSION['usuario_id']   = $usuario['id'];
+        $_SESSION['usuario_nome'] = $usuario['nome'];
 
-    if (password_verify($senha, $usuario['senha'])){
-        $_SESSION['usuario_id'] = $usuario['id'];
-        $_SESSION['usuario_nome'] = $usuario['nome']; #cria sessao do usuario 
-
-        header("Location: /projeto/dashboard.php"); #redireciona para o dashboard
+        header("Location: ../projeto/dashboard.php"); // Redireciona para o painel
         exit;
-  
     } else {
-
         echo "Senha incorreta.";
-
     }
-
 } else {
-
     echo "Usuário não encontrado.";
-
 }
-
 ?>
