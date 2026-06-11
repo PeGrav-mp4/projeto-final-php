@@ -12,7 +12,7 @@ Projeto de conclusão desenvolvido para a disciplina de Programação Orientada 
 
 Para facilitar a defesa do código, as responsabilidades foram divididas estrategicamente entre os integrantes do grupo:
 
-### 1. Luana Brotto de Jesus (RGM: 41940270)
+### 1. Pedro Henrique Frason Jorge (RGM: 42851360)
 **Foco:** Front-end, UX/UI e Interface (*Desenvolvimento visual e estrutural*)
 - Criação e manutenção do arquivo `style.css`.
 - Implementação de layouts responsivos utilizando `Flexbox` e media queries (`@media max-width`).

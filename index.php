@@ -3,6 +3,7 @@
  * Autores:
  * Pedro Henrique POliceno41829964
  * Gustavo Henrique Garcia Cavalli43635563
+ * Pedro Henrique Frason Jorge42851360
  */
 session_start();
 

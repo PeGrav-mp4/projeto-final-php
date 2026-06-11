@@ -4,7 +4,7 @@
     <br>
     <h3>Nossa Equipe</h3>
     <ul>
-        <li>Luana Brotto de Jesus</li>
+        <li>Pedro Henrique Frason Jorge</li>
         <li>Gustavo Henrique Garcia Cavalli</li>
         <li>Pedro Henrique Policeno</li>
     </ul>
