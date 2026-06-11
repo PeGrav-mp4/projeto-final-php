@@ -11,6 +11,8 @@ USE gerenciador_tarefas;
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,       -- Identificador único do usuário
     nome VARCHAR(100) NOT NULL,              -- Nome completo
+    cpf VARCHAR(14) UNIQUE NOT NULL,         -- CPF do usuário para validação e recuperação de senha
+    data_nascimento DATE NOT NULL,           -- Data de nascimento para validação e recuperação de senha
     email VARCHAR(100) UNIQUE NOT NULL,      -- E-mail único (usado no login)
     senha VARCHAR(255) NOT NULL              -- Senha criptografada com password_hash()
 );

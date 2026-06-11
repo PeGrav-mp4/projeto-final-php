@@ -1,21 +1,21 @@
 <?php
-$host = "localhost:3306";
-$usuario = "root";
-$senha = "";
+// Script para configuração inicial rápida do banco de dados
+// Pode ser rodado no terminal via `php setup_db.php`
 
-$conexao = mysqli_connect($host, $usuario, $senha);
+$host = '127.0.0.1';
+$user = 'root';
+$pass = '';
 
-if (!$conexao) {
-    die("Falha na conexao: " . mysqli_connect_error() . "\n");
+try {
+    $pdo = new PDO("mysql:host=$host;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = file_get_contents(__DIR__ . '/database/banco.sql');
+    
+    $pdo->exec($sql);
+    
+    echo "Banco de dados 'gerenciador_tarefas' criado/atualizado com sucesso com as novas colunas CPF e Data de Nascimento!\n";
+
+} catch (PDOException $e) {
+    echo "Erro ao configurar o banco de dados: " . $e->getMessage() . "\n";
 }
-
-$sql = file_get_contents(__DIR__ . '/database/banco.sql');
-
-if (mysqli_multi_query($conexao, $sql)) {
-    echo "Banco de dados e tabelas criados com sucesso!\n";
-} else {
-    echo "Erro ao criar banco/tabelas: " . mysqli_error($conexao) . "\n";
-}
-
-mysqli_close($conexao);
-?>

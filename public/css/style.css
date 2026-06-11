@@ -1,0 +1,178 @@
+/* CSS Tradicional, Simples e Profissional (Sem excesso de "IA") */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Layout */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.content {
+    min-height: 70vh;
+    padding: 20px 0;
+}
+
+/* Header */
+.main-header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header a {
+    color: #fff;
+}
+
+.main-header .logo h1 {
+    font-size: 24px;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Botoes */
+.btn-primary, .btn-secondary, .btn-danger, button {
+    display: inline-block;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.btn-primary, button[type="submit"] {
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+}
+.btn-primary:hover, button[type="submit"]:hover {
+    background-color: #004494;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+    text-decoration: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+    text-decoration: none;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Formulários */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Alertas */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Footer */
+.main-footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
